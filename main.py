@@ -1,3 +1,4 @@
+import sys
 # Convert integer into hex string format for output
 def dec_to_hex(x):
     string = ""
@@ -97,12 +98,19 @@ def get_pos(bin_m):
                 bit_sign = -1
     return calc_final_pos(p_pos, n_pos)
 
+### END OF FUNCTION DEFINITIONS - START OF MAIN ###
 
-# Read in input, get resulting position for each input and print
-q = int(input())
+# identify if file used as input, or using STDIN
+if len(sys.argv) > 1:
+    infile = open(sys.argv[1])
+else:
+    infile = sys.stdin
+
+# parse through content and operate
+q = int(infile.readline())
 for i in range(q):
-    input()
-    m = int(input(), 16)
+    infile.readline()
+    m = int(infile.readline(), 16)
     pos = get_pos(bin(m)[2:])
     print(dec_to_hex(pos[0]))
     print(dec_to_hex(pos[1]))
